@@ -8,7 +8,7 @@ from django.urls import reverse
 class Post(models.Model):
     title = models.CharField(max_length=255)
     date_posted = models.DateTimeField(auto_now_add=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey('User', on_delete=models.CASCADE)
     #post_score = models.
     post_url = models.CharField(max_legnth=255)    
     description = models.TextField()
@@ -21,8 +21,6 @@ class Post(models.Model):
     
 class Comment(models.Model):
     date_posted = models.DateTimeField(auto_now_add=True)
-    
-
 
 
 
@@ -40,7 +38,5 @@ class User(models.Model):
 
 
 
-
-
 class Vote(models.Model):
-    user_vote
+    pass
