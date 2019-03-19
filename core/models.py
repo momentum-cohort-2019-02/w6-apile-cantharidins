@@ -19,18 +19,17 @@ class Post(models.Model):
     def __str__(self):
         return self.title
 
-
-    
     
 class Comment(models.Model):
     date_posted = models.DateTimeField(auto_now_add=True)
-
-
+    user = models.ForeignKey('User', on_delete=models.CASCADE, blank=True, null=True)
+    content = models.TextField(null=True)
 
 class User(models.Model):   
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     date_created = models.DateField(auto_now_add=True)
-    comment = models.ForeignKey(Comment, on_delete=models.CASCADE, blank=True, null=True)
+
+
 
     def __str__(self):
         return self.user.name
