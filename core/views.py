@@ -20,6 +20,8 @@ def index(request):
         'vote_counter': vote_counter,
         'user': user,
     }
-
     # Render the HTML template index.html with the date in the context variable
     return render(request, 'index.html', context=context)
+
+def post_detail(request):
+    post = Post.objects.all()
