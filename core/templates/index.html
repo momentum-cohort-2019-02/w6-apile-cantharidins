@@ -3,18 +3,18 @@
 {% block content %}
 <div>
 
-    <h2>Recently added books</h2>
+    <h2>Recently added posts</h2>
         {% if post_list %}
         <ul class="list flex-wrap b--solid bg-gray ">
             {% for post in post_list %}
                 <li class="b--solid ma1 bg-light-yellow">
-                    {{ post.title }}
+                    <a href="{% url 'post_detail' slug=post.slug %}">{{ post.title }}</a>
                 
                 </li>
             {% endfor %}
         </ul>
         {% else %}
-        <p>There are no books on the site.</p> 
+        <p>There are no posts on the site.</p> 
         {% endif %}
 </div>
 
