@@ -11,7 +11,16 @@
     <div class="georgia">
       <div>
           <h1><a href="{% url 'index'%}">Scitech Forums</a></h1>
-        
+          {% if request.user.is_authenticated %}
+          <p class="mr2"><a class="blue dim" href="{% url 'index' %}">Main page link placeholder</a></p>
+          <p class="mr2">|</p>
+          <p class="mr2"><a class="blue dim" href="{% url 'auth_logout' %}?next=/core/">Logout</a></p>
+          {% else %}
+          <p class="mr2"><a class="blue dim" href="{% url 'auth_login' %}">Login</a></p>
+          <p class="mr2">|</p>
+          <p class="mr2"><a class="blue dim" href="{% url 'registration_register' %}">Register</a></p>
+          {% endif %}
+
       </div>
       
       <div>
