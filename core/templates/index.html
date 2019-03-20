@@ -9,7 +9,9 @@
             {% for post in post_list %}
                 <li class="b--solid ma1 bg-light-yellow">
                     <a href="{% url 'post_detail' slug=post.slug %}">{{ post.title }}</a>
-                
+                    {{ post.description }}
+                    {{ post.date_posted }}
+                    {{ post.user }}
                 </li>
             {% endfor %}
         </ul>
