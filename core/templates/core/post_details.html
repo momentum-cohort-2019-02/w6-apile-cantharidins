@@ -2,13 +2,14 @@
 
 {% block content %}
 <div>
-    <div>
-        {{ post.title }}
-        {{ post.user }}
-        
+    <div class="ba bw1 br2 pa2 ma3 avenir ">
+        <div class="flex-wrap">
+            <h2>{{ post.title }}</h2>
+            <p>{{ post.user }}</p>
+        </div>
     </div>
-    <div>
-
+    <div class="ba bw1 br2 pa2 ma3">
+        {{ post.description }}
     </div>
 </div>
 <div>
