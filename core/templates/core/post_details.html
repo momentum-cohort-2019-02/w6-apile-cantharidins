@@ -4,16 +4,17 @@
 <div>
     <div class="ba bw1 br2 pa2 ma3 avenir ">
         <div class="flex-wrap">
-            <h2>{{ post.title }}</h2>
-            <p>{{ post.user }}</p>
+            <h3 class="di">{{ post.title }}</h3>
+            <h6 class="di">Hello</h6>
+            {% comment %} {{ post.user }} {% endcomment %}
         </div>
     </div>
-    <div class="ba bw1 br2 pa2 ma3">
+    <div class="ba bw1 br2 pa2 ma3 avenir">
         {{ post.description }}
     </div>
 </div>
 <div>
-    <ul class="list flex-wrap b--solid bg-gray ">
+    <ul class="list flex-wrap b--solid bg-gray avenir">
         <!-- This will be the loop for the comments -->
             <li>
                 
