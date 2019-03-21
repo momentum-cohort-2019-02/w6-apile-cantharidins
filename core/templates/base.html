@@ -9,20 +9,22 @@
 </head>
 <body>
     <div class="georgia">
-      <div>
-          <h1><a href="{% url 'index'%}">Scitech Forums</a></h1>
+      <div class="flex justify-between ma3">
+          <h1><a class="blue dim f1"href="{% url 'index'%}">Scitech Forums</a></h1>
+          <div class="flex items-center">
           {% if request.user.is_authenticated %}
-          <p class="mr2"><a class="blue dim" href="{% url 'index' %}">Main page link placeholder</a></p>
+          <p class="mr2"><a class="blue dim f4" href="{% url 'index' %}">{{ request.user }}</a></p>
           <p class="mr2">|</p>
-          <p class="mr2"><a class="blue dim" href="{% url 'auth_logout' %}?next=/core/">Logout</a></p>
+          <p class="mr2"><a class="blue dim f4" href="{% url 'auth_logout' %}?next=/core/">Logout</a></p>
           {% else %}
-          <p class="mr2"><a class="blue dim" href="{% url 'auth_login' %}">Login</a></p>
+          <p class="mr2"><a class="blue dim f4" href="{% url 'auth_login' %}">Login</a></p>
           <p class="mr2">|</p>
-          <p class="mr2"><a class="blue dim" href="{% url 'registration_register' %}">Register</a></p>
+          <p class="mr2"><a class="blue dim f4" href="{% url 'registration_register' %}">Register</a></p>
           {% endif %}
+          </div>
 
       </div>
-      
+      <div class="b--solid black"></div>
       <div>
         <div>{% block content %}{% endblock %}</div>
       </div>
