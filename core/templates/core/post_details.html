@@ -38,7 +38,9 @@
 
             {% for comment in comment_list %}
                 <li class="ba bw1 br2 pa2 ma2 avenir bg-white">
+                    <p>{{ comment.user }}</p>
                     <p>{{ comment.content }}</p>
+                    <p>{{ comment.date_posted }}</p>
                 </li>
             {% endfor %}
     </ul>

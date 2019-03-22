@@ -25,7 +25,7 @@ def index(request):
     }
     # Render the HTML template index.html with the date in the context variable
     return render(request, 'index.html', context=context)
-    
+
 
 def post_detail(request, slug):
     post = get_object_or_404(Post, slug=slug)
@@ -46,7 +46,7 @@ def comment_new(request, slug):
             comment = form.save(commit=False)
             comment.user = request.user
             comment.save()
-            return redirect('post_detail', slug=post.slug)
+            return redirect('post_detail', slug=slug)
     else:
 
         form = CommentForm()
