@@ -3,19 +3,20 @@
 {% block content %}
 <div>
 
-    <h2>Recently added posts</h2>
+    <h2 class="flex justify-center"><a href="{% url 'post_new' %}">Post something awesome!</a></h2>
+    
         {% if post_list %}
-        <ul class="list flex-wrap b--solid bg-gray ">
+        <ul class="">
             {% for post in post_list %}
-                <li class="b--solid ma1 bg-light-yellow flex flex-wrap justify-between">
+                <li class="b--solid ma1 bg-light-yellow list justify-between">
                     <div class="w-100">
-                    <a class=" ml2 w-30 f3" href="{% url 'post_detail' slug=post.slug %}">{{ post.title }}</a>
-                    <a class="w-two-thirds" target="_blank" href="{{ post.post_url }}">{{ post.post_url|truncatechars:20 }}</a>
+                    <a class=" ml2 w-30 f3 black" href="{% url 'post_detail' slug=post.slug %}">{{ post.title }}</a>
+                    <a class="w-two-thirds dim blue" target="_blank" href="{{ post.post_url }}">Check it out!</a>
                     </div>
                     <div class="flex ml2">
-                    <p class="ml2 mr2">{{ post.description }}</p>
-                    <p class="ml2 mr2">{{ post.date_posted }}</p>
-                    <p class="ml2 mr2">{{ post.user }}</p>
+                    <p class="ml2 w-100">{{ post.description }}</p>
+                    <p class="ml2 mr2 ">{{ post.date_posted }}</p>
+                    <p class="ml2 mr2 ">{{ post.user }}</p>
                     </div>
                 </li>
             {% endfor %}
@@ -23,6 +24,7 @@
         {% else %}
         <p>There are no posts on the site.</p> 
         {% endif %}
+
 </div>
 
 
