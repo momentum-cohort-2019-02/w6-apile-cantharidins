@@ -6,6 +6,9 @@ from django.contrib import messages
 from django.core.paginator import Paginator
 from django.views.decorators.http import require_http_methods
 from django.http import HttpResponseRedirect
+from core.forms import PostForm
+import datetime
+from django.forms.widgets import TextInput
 
 
 def index(request):
@@ -31,3 +34,23 @@ def post_detail(request, slug):
     }
 
     return render(request, 'core/post_details.html', context=context)
+
+# @require_http_methods(['POST'])
+# @login_required
+def post_new(request):
+    
+    if request.method=="POST":
+        form = PostForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.user = request.user
+            post.date_posted = datetime.datetime.now()
+            post.save()
+            return redirect('post_detail', slug=post.slug)
+    else:
+        form = PostForm()
+    return render(request, 'core/post_edit.html', {'form': form})
+    
+    
+    
+    
