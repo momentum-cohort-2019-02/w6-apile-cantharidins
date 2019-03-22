@@ -6,7 +6,7 @@ from django.contrib import messages
 from django.core.paginator import Paginator
 from django.views.decorators.http import require_http_methods
 from django.http import HttpResponseRedirect
-
+from .forms import CommentForm
 
 def index(request):
     """View function for home page of site."""
@@ -31,3 +31,8 @@ def post_detail(request, slug):
     }
 
     return render(request, 'core/post_details.html', context=context)
+
+def comment_new(request):
+    
+    form = CommentForm()
+    return render(request, 'blog/post_edit.html', {'form': form})
