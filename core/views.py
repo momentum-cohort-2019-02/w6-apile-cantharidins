@@ -25,14 +25,25 @@ def index(request):
 
 def post_detail(request, slug):
     post = get_object_or_404(Post, slug=slug)
-    
+    comment_list = Comment.objects.all()
     context = {
         'post': post,
+        'comment_list': comment_list,
     }
 
     return render(request, 'core/post_details.html', context=context)
 
-def comment_new(request):
+
+def comment_new(request, slug):
     
-    form = CommentForm()
-    return render(request, 'blog/post_edit.html', {'form': form})
+    if request.method == "POST":
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.user = request.user
+            comment.save()
+            return redirect('post_detail', slug=post.slug)
+    else:
+
+        form = CommentForm()
+    return render(request, 'core/comment_add.html', {'form': form})

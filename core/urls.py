@@ -4,5 +4,5 @@ from . import views
 urlpatterns = [
     path('', views.index, name='index'),
     path('post/<slug:slug>', views.post_detail, name='post_detail'),
-    path('This should contain a link to the specific post?', views.comment_detail, name='comment_detail'),
+    path('post/<slug:slug>/comment', views.comment_new, name='comment_new'),
 ]
