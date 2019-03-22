@@ -27,16 +27,20 @@
 </div>
 <div>
     <ul class="list b--solid bg-silver avenir">
-        <!-- This will be the loop for the comments -->
-            <li class="ba bw1 br2 pa2 ma2 avenir bg-white">
-                <p>This is my comment that doesn't exist</p>
+            <a href="{% url 'comment_new' post.slug %}">Add your comment here.</a>
 
-            </li>
-            <li class="ba bw1 br2 pa2 ma2 avenir bg-white">
-                <p>This is my comment that doesn't exist</p>
+            <h3>This page will contain the comment form.</h3>
+            <form method="POST" class="post-form">{% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="save btn btn-default">Save</button>
+            </form>
 
-            </li>
-        <!-- This will end the comments for loop -->
+
+            {% for comment in comment_list %}
+                <li class="ba bw1 br2 pa2 ma2 avenir bg-white">
+                    <p>{{ comment.content }}</p>
+                </li>
+            {% endfor %}
     </ul>
 </div>
 

@@ -1,5 +1,12 @@
 from django import forms
-from core.models import Post, Comment, Vote
+from .models import Post, Comment, Vote
+
+class CommentForm(forms.ModelForm):
+
+    class Meta:
+        model = Comment
+        fields = ("content",)
+
 
 class PostForm(forms.ModelForm):
 
@@ -9,9 +16,3 @@ class PostForm(forms.ModelForm):
 
 
 
-# class NewCommentForm(forms.Form):
-#     comment = forms.CharField(        
-#     )
-
-#     class Meta:
-#         model = Comment
