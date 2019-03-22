@@ -1,1 +1,1 @@
-<web:gunicorn scitech.wsgi>
+web: gunicorn scitech.wsgi
