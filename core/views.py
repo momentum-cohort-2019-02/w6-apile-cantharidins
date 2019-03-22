@@ -46,7 +46,7 @@ def comment_new(request, slug):
             comment = form.save(commit=False)
             comment.user = request.user
             comment.save()
-            return redirect('post_detail', slug=post.slug)
+            return redirect('post_detail', slug=slug)
     else:
 
         form = CommentForm()
