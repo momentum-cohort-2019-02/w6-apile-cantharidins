@@ -18,6 +18,10 @@
                     <p class="ml2 mr2 ">{{ post.date_posted }}</p>
                     <p class="ml2 mr2 ">{{ post.user }}</p>
                     </div>
+                    
+
+                    {{ post.voted_by.count }}
+                    
                 </li>
             {% endfor %}
         </ul>

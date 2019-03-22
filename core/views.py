@@ -35,7 +35,7 @@ def post_detail(request, slug):
 
     return render(request, 'core/post_details.html', context=context)
 
-# @require_http_methods(['POST'])
+
 # @login_required
 def post_new(request):
     
@@ -50,7 +50,19 @@ def post_new(request):
     else:
         form = PostForm()
     return render(request, 'core/post_edit.html', {'form': form})
-    
-    
+
+@login_required    
+def post_vote_view(request, slug):   
+    post = get_object_or_404(Post, slug=slug)
+
+    vote, created = request.user.vote_set.get_or_create(post=post)
+
+    if created:
+        messages.success(request, f"You have voted for {post.title}.")
+    else:
+        messages.info(request, f"You have unvoted for {post.title}.")
+        vote.delete()
+
+    return redirect('post_detail', slug)   
     
     

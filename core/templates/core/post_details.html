@@ -12,6 +12,18 @@
     <div class="ba bw1 br2 pa2 ma3 avenir">
         {{ post.description }}
     </div>
+    {% if request.user.is_authenticated %}
+        <form action="{% url 'post_vote' post.slug %}" method="POST">
+            {% csrf_token %}
+            <button type="submit" class="shadow-5 bg-light-gray b--solid">
+                {% if post in request.user.votes.all %}
+                    Unvote
+                {% else %}
+                    Vote
+                {% endif %}
+                </button>
+        </form>
+    {% endif %}
 </div>
 <div>
     <ul class="list b--solid bg-silver avenir">
