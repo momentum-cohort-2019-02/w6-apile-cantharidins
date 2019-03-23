@@ -39,6 +39,12 @@
             {% for comment in comment_list %}
                 <li class="ba bw1 br2 pa2 ma2 avenir bg-white">
                     <p>{{ comment.content }}</p>
+                    <p>{{ comment.user }}</p>
+                    {% if request.user.is_authenticated %}
+                        {% if request.user == comment.user %}
+                        <button><a class="" href="{% url 'comment_remove' post.slug %}">Delete Comment</button>
+                        {% endif %}
+                    {% endif %}
                 </li>
             {% endfor %}
     </ul>

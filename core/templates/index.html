@@ -22,7 +22,11 @@
                     
 
                     <p class="ml2 mr2">This post has {{ post.voted_by.count }} vote(s)!</p>
-                    
+                    {% if request.user.is_authenticated %}
+                        {% if request.user == post.user %}
+                        <button><a class="" href="{% url 'post_remove' post.slug %}">Delete Post</button>
+                        {% endif %}
+                    {% endif %}
                 </li>
             {% endfor %}
         </ul>

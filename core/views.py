@@ -80,5 +80,16 @@ def post_vote_view(request, slug):
         vote.delete()
 
     return redirect('post_detail', slug)   
-    
-    
+
+
+@login_required
+def post_remove(request, slug):
+    post = get_object_or_404(Post, slug=slug)
+    post.delete()
+    return redirect('index')  
+
+@login_required
+def comment_remove(request, slug):
+    comment = get_object_or_404(Comment)
+    comment.delete()
+    return redirect('post_detail', slug)  
