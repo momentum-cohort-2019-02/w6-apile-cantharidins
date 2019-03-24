@@ -2,14 +2,16 @@
 
 {% block content %}
 <div>
-    <div class="ba bw1 br2 pa2 ma3 avenir ">
+    <div class="ba bw1 br2 pa2 avenir bg-light-green">
         <div class="flex-wrap">
             <h3 class="di">{{ post.title }}</h3>
             <h6 class="di">Hello</h6>
             {% comment %} {{ post.user }} {% endcomment %}
         </div>
     </div>
-    <div class="ba bw1 br2 pa2 ma3 avenir">
+    <div class="ba bw1 br2 pa2 avenir bg-light-green">
+        <a href="{{ post_url }}" class="black">View post source</a>
+        <br>
         {{ post.description }}
     </div>
     {% if request.user.is_authenticated %}
@@ -26,10 +28,8 @@
     {% endif %}
 </div>
 <div>
-    <ul class="list b--solid bg-silver avenir">
-            <a href="{% url 'comment_new' post.slug %}">Add your comment here.</a>
-
-            <h3>This page will contain the comment form.</h3>
+    <ul class="list b--solid bg-light-green avenir">
+            <a href="{% url 'comment_new' post.slug %}" class="black">Add a comment</a>
             <form method="POST" class="post-form">{% csrf_token %}
                 {{ form.as_p }}
                 <button type="submit" class="save btn btn-default">Save</button>
@@ -38,7 +38,9 @@
 
             {% for comment in comment_list %}
                 <li class="ba bw1 br2 pa2 ma2 avenir bg-white">
+                    <p>{{ comment.user }}</p>
                     <p>{{ comment.content }}</p>
+                    <p>{{ comment.date_posted }}</p>
                     <p>{{ comment.user }}</p>
                     {% if request.user.is_authenticated %}
                         {% if request.user == comment.user %}

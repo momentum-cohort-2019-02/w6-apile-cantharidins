@@ -23,7 +23,7 @@ def index(request):
     }
     # Render the HTML template index.html with the date in the context variable
     return render(request, 'index.html', context=context)
-    
+
 
 def post_detail(request, slug):
     post = get_object_or_404(Post, slug=slug)
