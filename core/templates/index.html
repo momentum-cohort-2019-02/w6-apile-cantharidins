@@ -1,17 +1,16 @@
 {% extends "base.html" %}
-
 {% block content %}
 <div>
 
-    <h2 class="flex justify-center"><a href="{% url 'post_new' %}">Post something awesome!</a></h2>
+    <h2 class="flex justify-center"><a href="{% url 'post_new' %}" class="flex justify-center black">Post something awesome!</a></h2>
     
         {% if post_list %}
         <ul class="">
             {% for post in post_list %}
-                <li class="b--solid ma1 bg-light-yellow list justify-between">
+                <li class="b--solid ma1 bg-light-green list justify-between br2">
                     <div class="w-100">
                     <a class=" ml2 w-30 f3 black" href="{% url 'post_detail' slug=post.slug %}">{{ post.title }}</a>
-                    <a class="w-two-thirds dim blue" target="_blank" href="{{ post.post_url }}">Check it out!</a>
+                    <a class="w-two-thirds dim black" target="_blank" href="{{ post.post_url }}">View post source</a>
                     </div>
                     <div class="flex ml2">
                     <p class="ml2 w-100">{{ post.description }}</p>
