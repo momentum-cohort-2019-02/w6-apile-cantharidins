@@ -5,12 +5,12 @@
     <div class="ba bw1 br2 pa2 avenir bg-light-green">
         <div class="flex-wrap">
             <h3 class="di">{{ post.title }}</h3>
-            <h6 class="di">Hello</h6>
+            <h6 class="di">{{ post.user }}</h6>
             {% comment %} {{ post.user }} {% endcomment %}
         </div>
     </div>
     <div class="ba bw1 br2 pa2 avenir bg-light-green">
-        <a href="{{ post_url }}" class="black">View post source</a>
+        <a href="{{ post.post_url }}" class="black">View post source</a>
         <br>
         {{ post.description }}
     </div>
@@ -30,23 +30,26 @@
 <div>
     <ul class="list b--solid bg-light-green avenir">
             <a href="{% url 'comment_new' post.slug %}" class="black">Add a comment</a>
-            <form method="POST" class="post-form">{% csrf_token %}
+            {% comment %} <form method="POST" class="post-form">{% csrf_token %}
                 {{ form.as_p }}
                 <button type="submit" class="save btn btn-default">Save</button>
-            </form>
+            </form> {% endcomment %}
 
 
             {% for comment in comment_list %}
                 <li class="ba bw1 br2 pa2 ma2 avenir bg-white">
-                    <p>{{ comment.user }}</p>
                     <p>{{ comment.content }}</p>
-                    <p>{{ comment.date_posted }}</p>
-                    <p>{{ comment.user }}</p>
-                    {% if request.user.is_authenticated %}
+                    <div class="flex flex-wrap justify-between  ">
+                    <div class="flex flex-wrap">
+                        <p class="mr2">{{ comment.user }}</p>
+                        <p class="mr2">{{ comment.date_posted }}</p>
+                    </div>
+                    {% comment %} {% if request.user.is_authenticated %}
                         {% if request.user == comment.user %}
-                        <button><a class="" href="{% url 'comment_remove' post.slug %}">Delete Comment</button>
+                        <button><a href="{% url 'comment_remove' post.slug %}">Delete Comment</a></button>
                         {% endif %}
-                    {% endif %}
+                    {% endif %} {% endcomment %}
+                    </div>
                 </li>
             {% endfor %}
     </ul>

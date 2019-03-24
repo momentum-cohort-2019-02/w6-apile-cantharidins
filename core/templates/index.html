@@ -10,22 +10,39 @@
                 <li class="b--solid ma1 bg-light-green list justify-between br2">
                     <div class="w-100">
                     <a class=" ml2 w-30 f3 black" href="{% url 'post_detail' slug=post.slug %}">{{ post.title }}</a>
-                    <a class="w-two-thirds dim black" target="_blank" href="{{ post.post_url }}">View post source</a>
-                    </div>
-                    <div class="flex ml2">
-                    <p class="ml2 w-100">{{ post.description }}</p>
-                    <p class="ml2 mr2 ">{{ post.date_posted }}</p>
-                    <p class="ml2 mr2 ">{{ post.user }}</p>
-                    <p class="ml2 mr2">{{ post.comment_set.count }} comment(s)</p>
-                    </div>
-                    
-
-                    <p class="ml2 mr2">This post has {{ post.voted_by.count }} vote(s)!</p>
-                    {% if request.user.is_authenticated %}
-                        {% if request.user == post.user %}
-                        <button><a class="" href="{% url 'post_remove' post.slug %}">Delete Post</button>
-                        {% endif %}
+                    {% if post.post_url != '' %}
+                        {{ post.post_url|urlizetrunc:20 }}
                     {% endif %}
+                    </div>
+                    <div class="flex flex-wrap justify-between ml2">
+                        <ul class="list flex flex-wrap">
+                            <li class="ml2 w-100">{{ post.description }} </li>
+                            <li class="ml2">{{ post.date_posted }} |</li>
+                            <li class="ml2">Author: {{ post.user }} |</li>
+                            {% if post.comment_set.count > 1 %}
+                            <li class="ml2 mr2">
+                                <a class="blue" href="{% url 'post_detail' slug=post.slug %}">{{ post.comment_set.count }} comments</a></li>
+                            {% elif post.comment_set.count == 1 %}
+                            <li class="ml2 mr2">
+                                <a class="blue" href="{% url 'post_detail' slug=post.slug %}">{{ post.comment_set.count }} comment</a></li>
+                            {% else %}
+                            <li class="ml2 mr2">0 comments</li>
+                            {% endif %}
+                        </ul>
+                        {% if request.user.is_authenticated %}
+                            {% if request.user == post.user %}
+                            <button><a class="" href="{% url 'post_remove' post.slug %}">Delete Post</a></button>
+                            {% endif %}
+                        {% endif %}
+                    </div>
+                    <div class="flex flex-wrap justify-center">
+                    {% if post.voted_by.count == 1 %}
+                    <p class="ml2 mr2">This post has {{ post.voted_by.count }} vote!</p>
+                    {% elif post.voted_by.count > 1 %}
+                    <p class="ml2 mr2">This post has {{ post.voted_by.count }} votes!</p>
+                    {% else %}
+                    <p class="ml2 mr2">No one voted for this post. Be the first!</p>                   {% endif %} 
+                    </div>
                 </li>
             {% endfor %}
         </ul>
