@@ -15,4 +15,3 @@ class PostForm(forms.ModelForm):
         fields = ('title', 'post_url', 'description')
 
 
-

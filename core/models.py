@@ -9,7 +9,7 @@ class Post(models.Model):
     date_posted = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     voted_by = models.ManyToManyField(to=User, related_name='votes', through='Vote')
-    post_url = models.CharField(max_length=255, help_text="input page URL")    
+    post_url = models.URLField(max_length=255, blank=True, help_text="Start URL with http://")    
     description = models.TextField()
     slug = models.SlugField()
 
@@ -44,7 +44,8 @@ class Post(models.Model):
     
 class Comment(models.Model):
     date_posted = models.DateTimeField(auto_now_add=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
     content = models.TextField(null=True)
 
 

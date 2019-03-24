@@ -41,6 +41,12 @@
                     <p>{{ comment.user }}</p>
                     <p>{{ comment.content }}</p>
                     <p>{{ comment.date_posted }}</p>
+                    <p>{{ comment.user }}</p>
+                    {% if request.user.is_authenticated %}
+                        {% if request.user == comment.user %}
+                        <button><a class="" href="{% url 'comment_remove' post.slug %}">Delete Comment</button>
+                        {% endif %}
+                    {% endif %}
                 </li>
             {% endfor %}
     </ul>

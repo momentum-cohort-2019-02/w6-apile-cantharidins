@@ -11,16 +11,22 @@
                     <div class="w-100">
                     <a class=" ml2 w-30 f3 black" href="{% url 'post_detail' slug=post.slug %}">{{ post.title }}</a>
                     <a class="w-two-thirds dim black" target="_blank" href="{{ post.post_url }}">View post source</a>
+                    {{ post.post_url|urlizetrunc:20 }}
                     </div>
                     <div class="flex ml2">
                     <p class="ml2 w-100">{{ post.description }}</p>
                     <p class="ml2 mr2 ">{{ post.date_posted }}</p>
                     <p class="ml2 mr2 ">{{ post.user }}</p>
+                    <p class="ml2 mr2">{{ post.comment_set.count }} comment(s)</p>
                     </div>
                     
 
-                    {{ post.voted_by.count }}
-                    
+                    <p class="ml2 mr2">This post has {{ post.voted_by.count }} vote(s)!</p>
+                    {% if request.user.is_authenticated %}
+                        {% if request.user == post.user %}
+                        <button><a class="" href="{% url 'post_remove' post.slug %}">Delete Post</button>
+                        {% endif %}
+                    {% endif %}
                 </li>
             {% endfor %}
         </ul>
