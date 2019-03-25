@@ -4,6 +4,10 @@
 
 For this week's project, you will build as a group a Django application that users use to collect links, and vote and comment on these links. This is like [Hacker News](https://news.ycombinator.com/), [Reddit](https://www.reddit.com/), or [Lobsters](https://lobste.rs/).
 
+## Our project link on Heroku
+
+This is the link to our deployed page: [SciTech Forums] (https://pacific-inlet-70629.herokuapp.com/core/)
+
 ## Specifications
 
 ### Models
